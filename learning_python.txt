@@ -1,0 +1,8 @@
+# PCC TIY _ Learning Python
+# Write a few lines about what you've learned so far. Read file and print 2x 
+
+Everything is levels of abstraction
+Variables, functions, methods, classes
+Arrays, dictionaries, for loops, while loops 
+RegEx, importing libraries, reading files
+ 

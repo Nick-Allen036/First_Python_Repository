@@ -1,0 +1,14 @@
+# Notes for using Git through Git Bash
+
+# Logging In to Git
+$ git config --global user.name "User Name"
+$ git config --global user.email myemail@gmail.com
+
+$ git config --global init.default branch main 
+
+cd C:/user/etc for change directory 
+git init # sets initial respository to cd
+clear # to refresh terminal 
+
+git status # Shows un/tracked and commits
+git add
