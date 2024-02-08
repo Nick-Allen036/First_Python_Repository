@@ -1,6 +1,6 @@
 # Notes for using Git through Git Bash
 
-# Logging In to Git
+# LOGGING IN to Git
 $ git config --global user.name "User Name"
 $ git config --global user.email myemail@gmail.com
 
@@ -39,9 +39,9 @@ $ {up arrow}           # cmd line, cycles through prev cmd
 q                      # Closes out current directory 
 spacebar / b           # Browse git log 1pg at a time
 
-git reset commit-value # Reverts to prev commit, find commit-value from 
+git reset commit-value # Reverts to prev commit, find commit-value from log
 
-# Branches # 
+# BRANCHES
 Makes copies of main branch. Teams create branches in order to work on diff things/ bug fix/etc
 Then merge back into main branch when sure
 
