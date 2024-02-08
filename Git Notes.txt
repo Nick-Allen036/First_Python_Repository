@@ -1,6 +1,6 @@
 # Notes for using Git through Git Bash
 
-# LOGGING IN to Git
+# Logging In to Git
 $ git config --global user.name "User Name"
 $ git config --global user.email myemail@gmail.com
 
@@ -29,23 +29,36 @@ git commit -a -m "commit msg"    # -a stages all prev used files, so no git add.
 	 git config --global user.email "you@example.com"
 	 git config --global user.name "Your Name"
 
-git log                # see save credentials and commit history
-git log --oneline      # For commit msg summary
-git log -p             # -p for 'patch', detailed view of changes in each commit
-git log -p -n <limit>  # Where <limit> is the number of commits you want to see.
-git diff               # Shows differences in modified files
+git log                  # see save credentials and commit history
+git log --oneline        # For commit msg summary
+git log -p               # -p for 'patch', detailed view of changes in each commit
+git log -p -n <limit>    # Where <limit> is the number of commits you want to see.
+git diff                 # Shows differences in modified files
 
-$ {up arrow}           # cmd line, cycles through prev cmd
-q                      # Closes out current directory 
-spacebar / b           # Browse git log 1pg at a time
+$ {up arrow}             # cmd line, cycles through prev cmd
+q                        # Closes out current directory 
+Ctrl + C	         # returns to $ if stuck in input/error mode
+spacebar / b             # Browse git log 1pg at a time
 
-git reset commit-value # Reverts to prev commit, find commit-value from log
+git reset commit-value   # Reverts to prev commit, find commit-value from 
 
-# BRANCHES
+# Branches  
 Makes copies of main branch. Teams create branches in order to work on diff things/ bug fix/etc
 Then merge back into main branch when sure
 
-git branch 		# Prints branches, * shows current branch
-git branch BranchName   # Adds a branch. Current branch in green w/ *
+git branch 		 # Prints branches, * shows current branch
+git branch BranchName    # Adds a branch. Current branch in green w/ *
+git switch BranchName    # Switches current 
+git switch BranchName -c # Creates and switches branch
 
-git switch BranchName   # Switches current 
+git merge -m "Merge FixTempBranch back into main" FixTempBranch 
+# Last agr is remote branch that is merged into current
+
+git branch -d BranchName # Branches are useless after merging
+
+#  GENERAL
+#  Branch off, commit in the meantime, merge back to main when sure
+#  use git commit -a -m "msg" when doing frequent commits. The -a skips staging 
+# .gitignore files are still ignored when using -a to stage/commit at the same time
+# -a not needed if git add "file" was already used to manually stage modified files
+
