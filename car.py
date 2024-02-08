@@ -2,7 +2,7 @@
 # The Car Class
 """A class that can be used to represent a car""" # Module level docstr to descr. what module does
 
-class Car:
+class Car:                                                         
     """A simple attempt to represent a car"""
 
     def __init__(self, make, model, year):
