@@ -6,12 +6,12 @@ $ git config --global user.email myemail@gmail.com
 
 $ git config --global init.default branch main 
 
-cd C:/user/etc for change directory 
+cd C:/user/etc                # Change directory 
 git init                      # Sets initial respository to cd, creates .git folder in cd
 clear                         # Refresh terminal 
 
 git status                    # Shows un/tracked and commits
-git add test.py/txt           # Tracks changes made to file to Git, git status to verify  
+git add test.py/txt           # Tracks changes made to file to Git, git status to verify, FILES WITH SPACES NEED QUOTES
 git add --all                 # tracks all files in cd/ adds to staging. Alt: Just simply git add .
 git rm --cached test.py       # Untracks currently tracked file, one that's been committed , still shows in git status, unlike .gitignore
 git restore --staged file.txt # Removes from staging area for commits. Will still be tracked for future chg but not in this commit. Used for intentional commits logs.
@@ -19,7 +19,7 @@ git restore --staged file.txt # Removes from staging area for commits. Will stil
 # IGNORE
 save ".gitignore" file in cd. Must put in quotes
 
-# Commit 
+# COMMIT 
 # A snapshot of files "right" now
 # Files must first be in staging area/ tracked
 git commit    -m "first commit - commit msg" 
