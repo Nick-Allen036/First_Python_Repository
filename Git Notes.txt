@@ -50,13 +50,14 @@ git branch 		 # Prints branches, * shows current branch
 git branch BranchName    # Adds a branch. Current branch in green w/ *
 git switch BranchName    # Switches current 
 git switch BranchName -c # Creates and switches branch
+git switch BranchName -d # Deletes branch, Branches are useless after merging
 
 git merge -m "Merge FixTempBranch back into main" FixTempBranch 
 # Last agr is remote branch that is merged into current
 
-git branch -d BranchName # Branches are useless after merging
-
-# General
-Branch off, commit in the meantime, merge back to main when sure
-use git commit -a -m "msg" when doing frequent commits. The -a skips staging 
+#  GENERAL
+#  Branch off, commit in the meantime, merge back to main when sure
+#  use git commit -a -m "msg" when doing frequent commits. The -a skips staging 
 # .gitignore files are still ignored when using -a to stage/commit at the same time
+# -a not needed if git add "file" was already used to manually stage modified files
+
