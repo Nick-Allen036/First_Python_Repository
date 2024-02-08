@@ -16,9 +16,9 @@ git add --all                 # tracks all files in cd/ adds to staging. Alt: Ju
 git rm --cached test.py       # Untracks currently tracked file, one that's been committed , still shows in git status, unlike .gitignore
 git restore --staged file.txt # Removes from staging area for commits. Will still be tracked for future chg but not in this commit. Used for intentional commits logs.
 
-# IGNORE
+# IGNORE  
 save ".gitignore" file in cd. Must put in quotes
-
+                                    
 # COMMIT 
 # A snapshot of files "right" now
 # Files must first be in staging area/ tracked
@@ -45,6 +45,7 @@ git reset commit-value # Reverts to prev commit, find commit-value from
 Makes copies of main branch. Teams create branches in order to work on diff things/ bug fix/etc
 Then merge back into main branch when sure
 
+git branch 		# Prints branches, * shows current branch
 git branch BranchName   # Adds a branch. Current branch in green w/ *
-git branch 		# Prints branches
+
 git switch BranchName   # Switches current 
