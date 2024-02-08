@@ -52,3 +52,8 @@ git switch BranchName   # Switches current
 
 git merge -m "Merge FixTempBranch back into main" FixTempBranch 
 # Last agr is remote branch that is merged into current
+
+# General
+Branch off, commit in the meantime, merge back to main when sure
+use git commit -a -m "msg" when doing frequent commits. The -a skips staging 
+# .gitignore files are still ignored when using -a to stage/commit at the same time
