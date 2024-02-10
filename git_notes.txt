@@ -63,3 +63,8 @@ git merge -m "Merge FixTempBranch back into main" FixTempBranch
 # -a not needed if git add "file" was already used to manually stage modified files
 # If merge conflicts, open txt file, HEAD = = = =  will show changes bw both, delete unneeded chnages and extra branch names
 
+Push 
+git remote origin https://github.com/Nick-Allen036/First_Python_Repository
+https://github.com/Nick-Allen036/First_Python_Repository  # 
+git push -u origin main                                   # Pushes to Github
+
