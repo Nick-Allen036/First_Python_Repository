@@ -66,5 +66,6 @@ git merge -m "Merge FixTempBranch back into main" FixTempBranch
 Push 
 git remote origin https://github.com/Nick-Allen036/First_Python_Repository
 https://github.com/Nick-Allen036/First_Python_Repository  # 
-git push -u origin main                                   # Pushes to Github
+git push -u origin main                                   # Pushes to Github, -u sets that current repository as default, then you can simply use 'git push'
 
+git remote -v                                             # shows github repository 

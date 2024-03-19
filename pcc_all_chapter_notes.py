@@ -1,8 +1,4 @@
 #Changing Case in a String with Methods 
-
-from tkinter import filedialog, ttk
-import tkinter as tk
-import fnmatch
 import os
 import itertools
 import random
@@ -1372,8 +1368,8 @@ class Admin(User):
     def __init__(self, first_name, last_name, email, join_date='Not Provided'):
         """First initialize all parameters, then import parent, then att specific to child (Admin)"""
         super().__init__(first_name, last_name, email,
-                         join_date)         # seperated by dot notation, this func is still w/in initial __init__, now don't need to reassign all param. to self.
-        self.privileges = Privileges()
+                         join_date) # seperated by dot notation, this func is still w/in initial __init__, now don't need to reassign all param. to self.
+        self.privileges = Privileges() 
 
 
 andre_the_giant = Admin('Andre', 'The Giant',
@@ -1708,7 +1704,7 @@ print('Tails:', outcomes['tails'])
 # Ch 10 _ Files and Exceptions
 from pathlib import Path # Path is newer and often preferrable to os.path
 
-path = Path('pi_digits.txt') # Create object with instantiation of class 
+path = Path('pi_digits.txt') # Create object with instantiatioln of class 
 contents = path.read_text()  # read file
 print(f"\n{contents}\nThis was the read files content read and printed\n")       # output to console
                  
@@ -1860,9 +1856,8 @@ count_words('moby_dick.txt')
 #or 
 
 filenames = ['alice.txt', 'siddharta.txt', 'moby_dick.txt', 'little_women.txt']
-for filename in filenames: 
-    path = (filename)
-    count_words(path)  
+for filename in filenames:
+    count_words(filename)  
 
 
 # TIY 10-6 Addition:
@@ -1898,7 +1893,246 @@ for filename in filenames:
 #     except ValueError:        
 #         print("Please enter numbers only")    
 
-# Cats and Dogs TIY 10.8
+# 10.8 Cats and Dogs
+cats_path = Path(r'C:\Users\Nick\My Drive\Hobbies\Coding\Python\Python Crash Course Scripts\cats.txt') # r bc python can't interpret \ other than escape char
+# intentional file err for except 'pass' text
+dogs_path = Path('dogs1.txt')
+
+print(f"\nCurrent working directory: {os.getcwd()}\n") # check looking in correct dir
+
+def read_and_print_file(file_path):
+    try: 
+        content = file_path.read_text()
+        print(f'{content}\n')
+    except FileNotFoundError:
+        pass # print("Cannot find file: {file_path}")        
+
+# Calling the function for each file
+read_and_print_file(cats_path)
+read_and_print_file(dogs_path)
 
 
+# TIY 10.10 COMMON WORDS
+# free books from 'https://www.gutenberg.org/'
+song = 'Row, row, row your boat'
+song.count('row')
+print(f"row count: {song.lower().count('row')}\n")
+
+from pathlib import Path 
+
+path_book = Path('The French Impressionists (1860-1900).txt')
+
+try:
+    art_contents = path_book.read_text(encoding='utf-8') # This file requires 'utf-8' or UnicodeDecodeError  
+    print(f"Manet is mentioned {art_contents.count('Manet')} times")
+    print(f"Monet is mentioned {art_contents.count('Monet')} times")
+    print(f"Degas is mentioned {art_contents.count('Degas')} times")
+    print(f"Cezanne is mentioned {art_contents.count('Cezanne')} times\n")
+except FileNotFoundError:                   
+    print('File not found')
+except UnicodeDecodeError as e:
+    print(f'Error decoding file: {e}')
+
+
+# Storing Data
+# JSON can store data, often user settings
+
+from pathlib import Path
+import json
+
+numbers = [2,3,5,7,11,13]
+
+path = Path('numbers.json')     # creates file in cd, since one does not exist. 
+
+contents =  json.dumps(numbers) # accepts one piece of data, converts to JSON
+path.write_text(contents)       # writes to file
+
+
+# ChatGpt Recommended Alternative
+numbers = [2, 3, 5, 7, 11, 13]
+
+path = Path('numbers.json')
+
+# Open the file in write mode ('w') and use json.dump to write the numbers list directly
+with path.open('w') as f: # opens file as object f, opens in ('w') writing mode, 
+                          # 'with' ensures file is closed upon exit and handles common resource management errors
+                          # faster for larger data sets since it 'streams' to file vs converting to str first 
+    json.dump(numbers, f) # writes list in JSON to the file.
+
+
+# Load JSON
+from pathlib import Path        # this style of import for smaller scripts or most used functions
+import json                     # with this style, must use json.loads(), but adds to readability
+                                # importing whole module reduces risk of namespace conflicts due then using module.function() formatting in main code 
+
+path = Path('numbers.json')     # file to var
+contents = path.read_text()     # reads file (imports into python), method called on an object
+numbers = json.loads(contents)  # reads json from file you wrote to. load's'() stands for 'load string' (from json) 
+
+print(numbers)
+
+# One Line Option JSON Load
+json.loads(path.read_text())
+
+
+# remember_me.py
+# from pathlib import Path
+# import json
+
+# def greet_user():
+#     """Greets user by name"""
+#     path = Path('username.json')
+#     if path.exists():                                 # if file exists, returns True or False 
+#         contents = path.read_text()                   # load file 
+#         username = json.loads(contents)               # convert json to str for python to interpret
+#         print(f"\nWelcome back, {username.title()}!\n") # greet user 
+#     else:
+#         username = input("What is your name? ")       # else, get name
+#         path = Path('username.json')                  # create or assign existing file
+#         contents = json.dumps(username)               # convert to json
+#         path.write_text(contents)                     # save json to file
+#         print(f"We'll remember you when you come back, {username.title()}!")
+
+# greet_user() # function call 
+
+# OR, REFACTORED remember_me.py VERSION BELOW
+from pathlib import Path
+import json
+
+def get_stored_username(path):
+    """Get stored username if available"""
+    if path.exists():                                 # if file exists
+        contents = path.read_text()                   # load file
+        username = json.loads(contents)               # convert json to str for python to interpret
+        return username                               # returns name for further processing
+    else:
+        return None                                   # returning None is best practice if nothing found
     
+def get_new_username(path):
+    """Prompt for a new username"""
+    #username = input("What is your name? ")       # ask/save name
+    contents = json.dumps(username)               # convert to json
+    path.write_text(contents)                     # save json to file
+    return username
+
+def get_stored_real_name(path):
+    """Get stored username if available"""
+    if path.exists():                                 # if file exists
+        contents = path.read_text()                   # load file
+        real_name = json.loads(contents)               # convert json to str for python to interpret
+        return real_name                               # returns name for further processing
+    else:
+        return None                                   # returning None is best practice if nothing found
+    
+def get_new_real_name(path):
+    """Prompt for a new username"""
+    real_name = input("What is your real name? ")       # ask/save name
+    contents = json.dumps(real_name)               # convert to json
+    path.write_text(contents)                     # save json to file
+    return real_name
+
+# This Function Uses Previous Two Functions
+"""Each function below now has a clear, singular purpose"""
+def greet_user():
+    """Greet the user by name"""
+    path = Path('username.json')
+    path_realname = Path('realname.json')
+    username = get_stored_username(path)           # uses new function for username retrieval  
+    # is_same_user = input(f'Is your name {username}? (y/n)') 
+    # if is_same_user.lower() == "y":                               # if username exists / True, greet
+    #     print(f"Welcome back, {username}!")
+    # else:           
+    #     username = get_new_username(path)          # else, use new function for name input
+    #     print(f"We'll remember you when you come back, {username.title()}!")
+   
+   # Get Real Name
+    real_name = get_stored_real_name(path_realname)
+    if real_name:
+        print(f'Your real name is: {real_name}')
+    else: 
+        real_name = get_new_real_name(path_realname)
+        print(f"We'll remember your real name when you come back, {real_name.title()}!")
+
+greet_user()
+greet_user()
+
+# TIY Favorite Numbers 
+class Userdata:
+    def __init__(self, file_path):
+        # This method is called the constructor. 
+        # Initialize your class attributes (if any) here.
+        self.path = file_path
+    
+    def get_fav_number(self):
+        """Ask user for favorite number, convert to json and save to file"""
+        path = Path(self.path)                                     # save file path argument
+        # if path.exists():        
+            # fav_number = input("\nPlease type your favorite number: ") # get fav num
+            # user_fav_num = json.dumps(fav_number)               # save str to json                 
+            # try:
+            #     path.write_text(user_fav_num)                   # write json to file
+            #     print('Favorite number has been saved.\n')
+            # except Exception as e: 
+            #     print('Error saving the favorite number: {e}')
+
+    def load_fav_number(self):
+        """Read, convert json and load favorite number"""
+        path = Path(self.path)                              # create user json file
+        if path.exists():
+            fav_num_path = path.read_text()                 # read file in as str
+            user_fav_num = json.loads(fav_num_path)
+            print(f'Loading json settings.\nYour favorite number is {user_fav_num}.\n') 
+    
+    def save_volume_bright(self):
+        """Save multiple user inputs to a dict, convert to json and save to file"""
+        json_dict = {}
+
+        volume_setting = input('\nEnter you preferred volume setting (Low/Med/High)')
+        json_dict['volume'] = volume_setting
+
+        brightness_setting = input('\nEnter you preferred brightness setting (Low/Med/High)')
+        json_dict['brightness'] = brightness_setting
+
+        path = Path('vol_bright.json') 
+        path.write_text(path)
+
+favorite_number = Userdata('user_fav_num.json')
+favorite_number.get_fav_number()
+favorite_number.load_fav_number()
+
+# Unit 11 _ Testing Your Code
+def get_formatted_name(first, last): # pretend saved to name_function.py
+    """Generate a neatly formatted name."""
+    full_name = f'{first} {last}'
+    return full_name.title()     
+
+# names.py
+# from name_function import get_formatted_name # assuming it was saved separately 
+print('Enter: "q" at anytime to quit.')
+while True: 
+    first =  input('\nPlease type a first name: ')
+    if first == 'q':
+        break
+    last = input('\nPlease type a last name: ') 
+    if last == ' q':                  
+        break
+
+    formatted_name = get_formatted_name(first, last)
+    print(f'Neatly formatted name: {formatted_name}.')
+
+    # Unit testing is the automation of checking code. 
+    # A unit test checks a specific aspect of a function for correct bx
+    # A test case  is a collection of unit tests to prove fnx works
+    
+import unittest
+
+class NameTestCase(unittest.TestCase):
+    """Tests for name_function.py"""
+    
+    def test_first_last_name(self):
+        """Do names like 'Janice Joplin' work"""
+        formatted_name = get_formatted_name('janice', 'joplin')
+        self.assertEqual(formatted_name, 'Janice Joplin')
+        
+if __name__ == '__main__': # so that only runs in main file, not frameworks
+    unittest.main()
