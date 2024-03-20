@@ -2000,7 +2000,7 @@ from pathlib import Path
 import json
 
 def get_stored_username(path):
-    """Get stored username if available"""
+    """Get stored username if available"""  
     if path.exists():                                 # if file exists
         contents = path.read_text()                   # load file
         username = json.loads(contents)               # convert json to str for python to interpret
@@ -2100,39 +2100,51 @@ favorite_number = Userdata('user_fav_num.json')
 favorite_number.get_fav_number()
 favorite_number.load_fav_number()
 
-# Unit 11 _ Testing Your Code
-def get_formatted_name(first, last): # pretend saved to name_function.py
-    """Generate a neatly formatted name."""
-    full_name = f'{first} {last}'
-    return full_name.title()     
 
 # names.py
-# from name_function import get_formatted_name # assuming it was saved separately 
-print('Enter: "q" at anytime to quit.')
-while True: 
-    first =  input('\nPlease type a first name: ')
-    if first == 'q':
-        break
-    last = input('\nPlease type a last name: ') 
-    if last == ' q':                  
-        break
+# from name_function import get_formatted_name 
+# print('Enter: "q" at anytime to quit.')
+# while True: 
+#     first =  input('\nPlease type a first name: ')
+#     if first == 'q':
+#         break
+#     last = input('\nPlease type a last name: ') 
+#     if last == 'q':                  
+#         break
 
-    formatted_name = get_formatted_name(first, last)
-    print(f'Neatly formatted name: {formatted_name}.')
+#     formatted_name = get_formatted_name(first, last)
+#     print(f'Neatly formatted name: {formatted_name}.')
 
     # Unit testing is the automation of checking code. 
     # A unit test checks a specific aspect of a function for correct bx
     # A test case  is a collection of unit tests to prove fnx works
     
-import unittest
+# import unittest # Troubleshooting- this needs to be saved in seperate file. Exits on completion of tests
 
-class NameTestCase(unittest.TestCase):
-    """Tests for name_function.py"""
+# class NameTestCase(unittest.TestCase):
+#     """Tests for name_function.py"""
     
-    def test_first_last_name(self):
-        """Do names like 'Janice Joplin' work"""
-        formatted_name = get_formatted_name('janice', 'joplin')
-        self.assertEqual(formatted_name, 'Janice Joplin')
+#     def test_first_last_name(self): # method must start w/ test to run  
+#         """Do names like 'Janice Joplin' work"""
+#         formatted_name = get_formatted_name('janice', 'joplin')
+#         self.assertEqual(formatted_name, 'Janice Joplin')
+    
+#     def test_first_last_middle_name(self): # It's fine to have long descriptive test names
+#         """Do names like 'paul thomas anderson' work"""
+#         formatted_name = get_formatted_name('paul', 'anderson', 'thomas')
+#         self.assertEqual(formatted_name, 'Paul Thomas Anderson')
         
-if __name__ == '__main__': # so that only runs in main file, not frameworks
-    unittest.main()
+# if __name__ == '__main__': # so that only runs in main file, not frameworks
+#     unittest.main()
+
+
+# TIY 11.1 
+from city_functions import FormatCityCountry 
+
+# print("Before calling FormatCityCountry") Used as debug breakpoint
+print(FormatCityCountry('baltimore', 'maryland'))
+print(FormatCityCountry('jackson', 'mississippi'))
+print(FormatCityCountry('boston', 'massachusettes'))
+print(FormatCityCountry('philadelphia', 'pennsylvannia\n'))
+# print("After calling FormatCityCountry") 
+
