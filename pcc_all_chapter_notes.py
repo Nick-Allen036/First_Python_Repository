@@ -2148,3 +2148,7 @@ print(FormatCityCountry('boston', 'massachusettes'))
 print(FormatCityCountry('philadelphia', 'pennsylvannia\n'))
 # print("After calling FormatCityCountry") 
 
+# Unit Test _ Chapter 11 3rd Edition
+# Uses pytest instead of unittest
+# pytest is 3rd party module, upgrade pip with "python -m pip install --upgrade pip". *Note VS Code terminal cannot be virtual env
+
